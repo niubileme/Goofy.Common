@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Goofy.Common.Components
+namespace Goofy.Common
 {
 
     [AttributeUsage(AttributeTargets.Class)]
