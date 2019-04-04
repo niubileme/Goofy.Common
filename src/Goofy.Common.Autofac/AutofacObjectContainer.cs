@@ -45,14 +45,7 @@ namespace Goofy.Common.Autofac
             }
             return this;
         }
-
-
-        public IObjectContainer Register()
-        {
-
-            return this;
-        }
-
+        
 
         public object Resolve(Type serviceType)
         {

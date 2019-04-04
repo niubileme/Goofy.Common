@@ -21,74 +21,35 @@ namespace Goofy.Common
             Current.Build();
         }
 
-        //public static void RegisterType(Type implementationType, string serviceName = null, LifeStyle life = LifeStyle.Singleton)
-        //{
-        //    Current.RegisterType(implementationType, serviceName, life);
-        //}
+        public static void Register(Type serviceType, Type implementationType, LifeTime lifetime = LifeTime.Singleton)
+        {
+            Current.Register(serviceType, implementationType, lifetime);
+        }
 
-        //public static void RegisterType<TImplementer>(string serviceName = null, LifeStyle life = LifeStyle.Singleton)
-        //{
-        //    Current.RegisterType<TImplementer>(serviceName, life);
-        //}
+        public static void Register(Type serviceType, LifeTime lifetime = LifeTime.Singleton)
+        {
+            Current.Register(serviceType, serviceType, lifetime);
+        }
 
-        //public static void RegisterType(Type serviceType, Type implementationType, string serviceName = null, LifeStyle life = LifeStyle.Singleton)
-        //{
-        //    Current.RegisterType(serviceType, implementationType, serviceName, life);
-        //}
+        public static void Register<TService, TImplementer>(LifeTime lifetime = LifeTime.Singleton) where TImplementer : TService
+        {
+            Current.Register(typeof(TService), typeof(TImplementer), lifetime);
+        }
 
-        //public static void Register<TService, TImplementer>(string serviceName = null, LifeStyle life = LifeStyle.Singleton)
-        //    where TService : class
-        //    where TImplementer : class, TService
-        //{
-        //    Current.Register<TService, TImplementer>(serviceName, life);
-        //}
-
-        //public static void RegisterInstance<TService, TImplementer>(TImplementer instance, string serviceName = null)
-        //    where TService : class
-        //    where TImplementer : class, TService
-        //{
-        //    Current.RegisterInstance<TService, TImplementer>(instance, serviceName);
-        //}
-
-        //public static TService Resolve<TService>() where TService : class
-        //{
-        //    return Current.Resolve<TService>();
-        //}
-        //public static bool TryResolve<TService>(out TService instance) where TService : class
-        //{
-        //    return Current.TryResolve(out instance);
-        //}
+        public static void Register<TService>(LifeTime lifetime = LifeTime.Singleton)
+        {
+            Current.Register(typeof(TService), typeof(TService), lifetime);
+        }
 
 
-        //public static object Resolve(Type serviceType)
-        //{
-        //    return Current.Resolve(serviceType);
-        //}
+        public static TService Resolve<TService>()
+        {
+            return (TService)Current.Resolve(typeof(TService));
+        }
 
-        //public static bool TryResolve(Type serviceType, out object instance)
-        //{
-        //    return Current.TryResolve(serviceType, out instance);
-        //}
-
-        //public static TService ResolveNamed<TService>(string serviceName) where TService : class
-        //{
-        //    return Current.ResolveNamed<TService>(serviceName);
-        //}
-
-        //public static bool TryResolveNamed<TService>(string serviceName, out TService instance) where TService : class
-        //{
-        //    return Current.TryResolveNamed(serviceName, out instance);
-        //}
-
-
-        //public static object ResolveNamed(string serviceName, Type serviceType)
-        //{
-        //    return Current.ResolveNamed(serviceName, serviceType);
-        //}
-
-        //public static bool TryResolveNamed(string serviceName, Type serviceType, out object instance)
-        //{
-        //    return Current.TryResolveNamed(serviceName, serviceType, out instance);
-        //}
+        public static object Resolve(Type serviceType)
+        {
+            return Current.Resolve(serviceType);
+        }
     }
 }
